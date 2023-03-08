@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlin.random.Random
 
 
 /**
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : Fragment() {
     // TODO: Rename and change types of parameters
-
+    var score = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,10 +28,21 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnStart.setOnClickListener {
-            val playerName = txtName.text.toString()
-            val action = MainFragmentDirections.actionGameFragment(playerName)
-            Navigation.findNavController(it).navigate(action)
+        textRandomNum1.text = (0..20).random().toString()
+        textRandomNum2.text = (0..20).random().toString()
+        btnSubmit.setOnClickListener(){
+            var total = Integer.parseInt(textRandomNum1.text.toString()) + Integer.parseInt(textRandomNum2.text.toString())
+            if(total.toString()==numberAnswer.text.toString())
+            {
+                score = score + 1
+                textRandomNum1.text = (0..20).random().toString()
+                textRandomNum2.text = (0..20).random().toString()
+                numberAnswer.text.clear()
+            }
+            else{
+                var action = MainFragmentDirections.actionResultFragment(score)
+                Navigation.findNavController(it).navigate(action)
+            }
         }
     }
 
