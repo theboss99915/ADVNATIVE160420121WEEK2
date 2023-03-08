@@ -29,7 +29,7 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if(arguments != null) {
             val score = ResultFragmentArgs.fromBundle(requireArguments()).score
-            textScore.text = "Your score is " + score.toString()
+            textScore.text = "Your Score is " + score.toString()
         }
         btnBackMain.setOnClickListener(){
             var action = ResultFragmentDirections.actionMainFragment2()

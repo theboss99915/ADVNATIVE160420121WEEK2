@@ -38,6 +38,7 @@ class MainFragment : Fragment() {
                 textRandomNum1.text = (0..20).random().toString()
                 textRandomNum2.text = (0..20).random().toString()
                 numberAnswer.text.clear()
+
             }
             else{
                 var action = MainFragmentDirections.actionResultFragment(score)
